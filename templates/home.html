@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="m-3">
+<h1>Project Info</h1>
+<p>This repository includes a basic Django application which can be run using Docker Compose.</p>
+<p>
+	Some basic models, views and templates using Bootstrap have been created, and it is now up to you to expand on this with some additional functionality. It will be important to write unit tests to test any bit of functionality you have implemented.
+</p>
+<p>Once complete, commit your code to Github and share your project with us. You have 72 hours to complete as much as you are able to, and send your code back to us.</p>
+<p>A list of functionality required includes:
+<ul>
+	<li>Validator which ensures the client's ID number is a valid South African ID number.</li>
+	<li>Validator to ensure that a client with the same ID number doesn't already exist, notifying the user before the form is even submitted.</li>
+	<li>Create a "New Client" form which allows you to add the client and address details at the same time and update both models. A client should have both a Physical and Postal address, unless the Postal address is the same as the Physical address.</li>
+	<li>Create option to search for clients on the client list page, which updates as you type, but searches on the server side.</li>
+	<li>Add a new "Relationship" Model which allows you to create relationship between clients (e.g Husband, Wife, Father, Daughter) and create a form to create these relationships, as well as a page to view them. A client cannot have a relationship with themself.</li>
+</ul>
+</p>
+</div>
+{% endblock %}
