@@ -1,10 +1,17 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Client(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     id_number = models.CharField(max_length=250)
+
+    def get_absolute_url(self):
+        return reverse('client_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return f"{self.first_name} - f{self.last_name}"
 
 
 class Address(models.Model):
@@ -62,3 +69,12 @@ class Address(models.Model):
         blank=True,
         null=True,
     )
+
+
+class Relationship(models.Model):
+    relationship_name = models.CharField(max_length=256, blank=False, null=True)
+    relation = models.ForeignKey(Client, on_delete=models.CASCADE)
+    related_to = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='related')
+
+    def get_absolute_url(self):
+        return reverse('client_detail', kwargs={'pk': self.relation.pk})
