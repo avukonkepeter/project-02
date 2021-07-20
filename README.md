@@ -30,3 +30,18 @@ A list of functionality required includes:
 - Create a "New Client" form which allows you to add the client and address details at the same time and update both models. A client should have both a Physical and Postal address, unless the Postal address is the same as the Physical address.
 - Create option to search for clients on the client list page, which updates as you type, but searches on the server side.
 - Add a new "Relationship" Model which allows you to create relationship between clients (e.g Husband, Wife, Father, Daughter) and create a form to create these relationships, as well as a page to view them. A client cannot have a relationship with themself.
+
+***
+
+#### **Total Time Spent: 1 day (12 hours)**
+
+#### _Percent Completion: 65%_
+
+### TODO:
+
+- ID Validation inconsistent between online services, local algorithm
+- Postal/Physical Code functionality
+- Unit Tests
+- Edit Relationships (forms + input handling)
+- Form Validation
+- Touch-ups and Functional testing
