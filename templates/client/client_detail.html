@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card m-3">
+    <div class="card-header">
+      Client
+    </div>
+    <div class="card-body">
+    <p>First Name: {{ object.first_name }}</p>
+    <p>Last Name: {{ object.last_name }}</p>
+    <p>ID Number: {{ object.id_number }}</p>
+    </div>
+  </div>
+
+  <div class="card m-3">
+    <div class="card-header">
+     Relationships
+    </div>
+    <div class="card-body">
+        <div class="content">
+          <a href="{% url 'client_add_relationship' pk=object.pk %}" class="btn btn-primary btn-md" role="button">Add Relationship</a>
+          <br />
+          <br />
+          {% for rel in object.relationship_set.all %}
+          <div class="col-m">
+              <h6 class="card-title">Relationship Name: {{ rel.relationship_name }} | <span>{{ rel.related_to }}</span></h6>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+
+  <div class="card m-3">
+    <div class="card-header">
+      Address
+    </div>
+    <div class="card-body">
+      <div class="container">
+      <div class="row">
+        {% for address in client.address_set.all %}
+          <div class="col-md">
+            <h5 class="card-title">Address Type: {{ address.get_address_type_display }}</h5>
+            <h6 class="card-subtitle text-muted">
+              {{ address.unit_number|default:'' }}, {{ address.building|default:'' }} <br /> {{ address.street_number|default:'' }}, {{ address.street|default:'' }} <br /> {{ address.area|default:'' }}, {{ address.city|default:'' }} <br /> {{ address.province|default:'' }}, {{ address.country|default:'' }} <br /> {{ address.code|default:'' }}
+            </h6>
+            <br />
+            <p>Street: {{ address.street }}</p>
+            <p>Street Number: {{ address.street_number }}</p>
+            <p>Unit Number: {{ address.unit_number }}</p>
+            <p>Building: {{ address.building }}</p>
+            <p>Area: {{ address.area }}</p>
+            <p>City: {{ address.city }}</p>
+            <p>Province: {{ address.province }}</p>
+            <p>Country: {{ address.country }}</p>
+            <p>Code: {{ address.code }}</p>
+          </div>
+          <hr />
+        {% endfor %}
+      </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

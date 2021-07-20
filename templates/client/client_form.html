@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <br />
+  <form method="POST" id="clientForm">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {# Include the hidden fields #}
+    {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+    {% endfor %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.id_for_label == 'id_id_number'  %}
+          <br />
+          <div class="alert alert-danger alert-dismissible fade show mx-5" role="alert" id="id_number_error_div">
+            <span class="errorText"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+        {% if field.help_text %}
+          <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <br />
+    <div class="address_check form-group">
+      <label for="physical_address_checkbox">Physical Address same as postal: </label>
+      <input type="checkbox">
+    </div>
+    {{ formset.management_form }}
+    <div class="formsets">
+      <div class="row">
+        {% for fieldset_form in formset %}
+          <div class="col">
+            {{ fieldset_form.as_table }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
